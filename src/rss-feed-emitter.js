@@ -323,6 +323,9 @@ class RssFeedEmitter extends TinyEmitter {
     //    feed item list and emit while emitting events.
     function getContent() {
 
+      // Emit the "fetch-feed-start" event on start.
+      this.emit( 'fetch-feed-start', feed );
+
       instance._fetchFeed( feed.url )
         .tap( findFeed )
         .tap( redefineItemHistoryMaxLength )
