@@ -363,6 +363,9 @@ var RssFeedEmitter = function (_TinyEmitter) {
       //    feed item list and emit while emitting events.
       function getContent() {
 
+        // Emit the "fetch-feed-start" event on start.
+        this.emit('fetch-feed-start', feed);
+
         instance._fetchFeed(feed.url).tap(findFeed).tap(redefineItemHistoryMaxLength).tap(sortItemsByDate).tap(identifyOnlyNewItems).tap(populateNewItemsInFeed).catch(function (error) {
 
           // If this chain is iterating over a recently
